@@ -12,7 +12,7 @@ makedepends=('rust' 'cargo' 'git' 'alsa-lib' 'python' 'pkgconf')
 provides=("${pkgname}")
 conflicts=("${pkgname}")
 source=("https://github.com/hrkfdn/ncspot/archive/v${pkgver}.zip")
-sha512sums=('7149d472bcc3a349de2dbf48648422b5d7497be428de60a68762ef77a499a5f296d6a2213d9d1e6d57da1080217d33181c6de6bde62bba42a22ed83cd7a89227')
+sha512sums=()
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
