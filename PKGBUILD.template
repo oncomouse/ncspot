@@ -16,17 +16,17 @@ sha512sums=()
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  cargo fetch --locked
+  cargo +nightly fetch --locked
 }
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  cargo build --release --locked
+  cargo +nightly build --release --locked
 }
 
 check() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  cargo test --release --locked
+  cargo +nightly test --release --locked
 }
 
 package() {
