@@ -31,6 +31,6 @@ git add .
 git commit -m "$_pkgver"
 commit="$(git rev-parse HEAD)"
 git push -u
-git checkout master
+git checkout main
 git cherry-pick "$commit"
 git push -u
