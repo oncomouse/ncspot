@@ -22,5 +22,6 @@ pkgbase = ncspot
 	provides = ncspot
 	conflicts = ncspot
 	source = https://github.com/hrkfdn/ncspot/archive/v0.8.2.zip
+	sha512sums = dcbd6ac9e7c48271fb81f5dfbdab4f51bc0df67a19e33a68430c2f276288ffc9488e9d48ef86c6f578c47128d7414d9fb9ecd836f34b73ad081d947b0c62a547
 
 pkgname = ncspot
