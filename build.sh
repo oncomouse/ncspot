@@ -15,16 +15,21 @@ i=1
 regex='(.*)::(.*)'
 shasums=()
 for s in "${source[@]}"; do
-  [[ $s =~ $regex ]] || continue
-  out=${BASH_REMATCH[1]}
-  url=${BASH_REMATCH[2]}
-  curl -sLo "tmp/$out" "$url"
-  shasums[${#shasums[@]}]="$(shasum -a 512 "tmp/$out" | cut -d " " -f1)"
-  ((i = i + 1))
+	if [[ $s =~ $regex ]]; then
+		out=${BASH_REMATCH[1]}
+		url=${BASH_REMATCH[2]}
+	else
+		url="$s"
+		out="${url##*/}"
+	fi
+	curl -sLo "tmp/$out" "$url"
+	shasums[${#shasums[@]}]="$(shasum -a 512 "tmp/$out" | cut -d " " -f1)"
+	((i = i + 1))
 done
 echo "$_pkgver"
-sha256sums=$(join_by "\n" "${shasums[@]}")
-sed -e "s/sha512sums=()/sha512sums=(${sha256sums})/g" -e "s/VERSION/${_pkgver}/g" < PKGBUILD.template > PKGBUILD
+echo "${shasums[@]}"
+sha512sums=$(join_by "\n" "${shasums[@]}")
+sed -e "s/sha512sums=()/sha512sums=(${sha512sums})/g" -e "s/VERSION/${_pkgver}/g" < PKGBUILD.template > PKGBUILD
 makepkg --printsrcinfo > .SRCINFO
 rm -rf tmp
 git add .
